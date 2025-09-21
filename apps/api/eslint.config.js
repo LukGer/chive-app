@@ -1,4 +1,4 @@
-const { baseConfig } = require("@panelist/eslint-config/base");
+const { baseConfig } = require("@chive/eslint-config/base");
 
 module.exports = [
   ...baseConfig,

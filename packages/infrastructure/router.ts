@@ -1,7 +1,7 @@
 import { api } from "./api";
 import { domain } from "./dns";
 
-export const router = new sst.aws.Router("panelist-router", {
+export const router = new sst.aws.Router("chive-router", {
   routes: {
     "/*": api.url,
   },

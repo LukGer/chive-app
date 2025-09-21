@@ -1,6 +1,8 @@
+import { authClient } from "@/auth/client";
 import { useAuth } from "@/contexts/auth-context";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import {
+  Button,
   Form,
   Host,
   HStack,
@@ -13,14 +15,16 @@ import {
 } from "@expo/ui/swift-ui";
 import { cornerRadius, frame } from "@expo/ui/swift-ui/modifiers";
 import { Image } from "expo-image";
-import { Stack } from "expo-router";
-import { useState } from "react";
+import { Stack, useRouter } from "expo-router";
+import React, { useState } from "react";
 import { Appearance } from "react-native";
 
 export default function ProfileScreen() {
   const { session } = useAuth();
+  const router = useRouter();
 
   const backgroundColor = useThemeColor("background");
+  const errorColor = useThemeColor("error");
 
   if (!session) {
     return null;
@@ -40,51 +44,53 @@ export default function ProfileScreen() {
       />
 
       <Host matchContents style={{ flex: 1 }}>
-        <Form>
-          <Section>
-            <VStack
-              alignment="center"
-              spacing={8}
-              modifiers={[frame({ width: 999 })]}
-            >
-              {session.user.image && (
-                <HStack
-                  modifiers={[
-                    frame({ width: 100, height: 100 }),
-                    cornerRadius(24),
-                  ]}
-                >
-                  <Image
-                    source={{ uri: session?.user.image! }}
-                    style={{ width: 100, height: 100 }}
-                  />
-                </HStack>
-              )}
-              <Text size={24} design="rounded">
-                {session.user.name}
-              </Text>
-              <Text size={12} color="secondary">
-                {session.user.email}
-              </Text>
-            </VStack>
-          </Section>
-          <AppearanceSection />
-        </Form>
-        {/* <Section title="Admin">
-            <Link href="/admin">
-              <Button>
-                <SymbolView
-                  name="gear.badge"
-                  tintColor={AC.systemOrange}
-                  size={18}
-                />
-                <Text color="primary">Admin Panel</Text>
-              </Button>
-            </Link>
-          </Section>
-          <Button onPress={() => authClient.signOut()}>
-            <Text color={AC.systemRed.toString()}>Sign Out</Text>
-          </Button> */}
+        <VStack>
+          <Form>
+            <Section>
+              <VStack
+                alignment="center"
+                spacing={8}
+                modifiers={[frame({ width: 999 })]}
+              >
+                {session.user.image && (
+                  <HStack
+                    modifiers={[
+                      frame({ width: 100, height: 100 }),
+                      cornerRadius(24),
+                    ]}
+                  >
+                    <Image
+                      source={{ uri: session?.user.image! }}
+                      style={{ width: 100, height: 100 }}
+                    />
+                  </HStack>
+                )}
+                <Text size={24} design="rounded">
+                  {session.user.name}
+                </Text>
+                <Text size={12} color="secondary">
+                  {session.user.email}
+                </Text>
+              </VStack>
+            </Section>
+            <AppearanceSection />
+            {session.user.role === "admin" && (
+              <Section title="Admin">
+                <Button onPress={() => router.navigate("/admin")}>
+                  <HStack spacing={8}>
+                    <UIImage systemName="gear.badge" color="orange" size={18} />
+                    <Text color="orange">Admin Panel</Text>
+                  </HStack>
+                </Button>
+              </Section>
+            )}
+          </Form>
+          <HStack alignment="center">
+            <Button onPress={() => authClient.signOut()}>
+              <Text color={errorColor}>Sign Out</Text>
+            </Button>
+          </HStack>
+        </VStack>
       </Host>
     </>
   );

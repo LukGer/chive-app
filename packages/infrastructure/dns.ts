@@ -1,6 +1,6 @@
 export const domain = {
-  dev: "dev.panelist.lukger.dev",
-  prod: "panelist.lukger.dev",
+  dev: "dev.chive.lukger.dev",
+  prod: "chive.lukger.dev",
 }[$app.stage]!;
 
 export const zone = cloudflare.getZoneOutput({

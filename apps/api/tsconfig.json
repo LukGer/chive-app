@@ -1,5 +1,5 @@
 {
-  "extends": "@panelist/typescript-config/base.json",
+  "extends": "@chive/typescript-config/base.json",
   "compilerOptions": {
     "outDir": "./dist",
     "baseUrl": ".",
