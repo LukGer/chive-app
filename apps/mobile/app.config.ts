@@ -1,4 +1,3 @@
-import { IOSIcons } from "@expo/config-types";
 import { ConfigContext, ExpoConfig } from "expo/config";
 
 const IS_DEV = process.env.APP_VARIANT === "dev";
@@ -40,28 +39,16 @@ const getAppScheme = () => {
   return "chive-app";
 };
 
-const getAppIcons = (): IOSIcons => {
+const getAppIcons = () => {
   if (IS_DEV) {
-    return {
-      dark: "./assets/icons/dev/ios-dark.png",
-      light: "./assets/icons/dev/ios-light.png",
-      tinted: "./assets/icons/dev/ios-tinted.png",
-    };
+    return "./assets/icons/chive_prd.icon";
   }
 
   if (IS_PREVIEW) {
-    return {
-      dark: "./assets/icons/pre/ios-dark.png",
-      light: "./assets/icons/pre/ios-light.png",
-      tinted: "./assets/icons/pre/ios-tinted.png",
-    };
+    return "./assets/icons/chive_prd.icon";
   }
 
-  return {
-    dark: "./assets/icons/ios-dark.png",
-    light: "./assets/icons/ios-light.png",
-    tinted: "./assets/icons/ios-tinted.png",
-  };
+  return "./assets/icons/chive_prd.icon";
 };
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
@@ -82,22 +69,21 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       ITSAppUsesNonExemptEncryption: false,
     },
     icon: getAppIcons(),
+    appleTeamId: "WUBYBH9K9B",
   },
   plugins: [
     "expo-router",
     [
       "expo-splash-screen",
       {
-        image: "./assets/images/splash-icon.png",
-        imageWidth: 200,
-        resizeMode: "contain",
-        backgroundColor: "#ffffff",
+        backgroundColor: "#FAF8F5",
       },
     ],
     "expo-web-browser",
     "expo-secure-store",
     "expo-font",
     "expo-sqlite",
+    "@bacons/apple-targets",
   ],
   experiments: {
     typedRoutes: true,

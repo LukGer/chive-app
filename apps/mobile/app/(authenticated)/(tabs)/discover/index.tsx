@@ -1,9 +1,9 @@
 import { useHeaderSearch } from "@/hooks/use-header-search";
 import { useThemeColor } from "@/hooks/useThemeColor";
-import { Stack } from "expo-router";
+import { Link, Stack } from "expo-router";
 import { ScrollView, Text } from "react-native";
 
-export default function FeedScreen() {
+export default function SearchScreen() {
   const search = useHeaderSearch();
 
   const backgroundColor = useThemeColor("background");
@@ -12,7 +12,7 @@ export default function FeedScreen() {
     <>
       <Stack.Screen
         options={{
-          headerTitle: "Discover",
+          headerTitle: "Search",
           headerLargeTitle: true,
           headerTransparent: true,
           headerLargeTitleShadowVisible: false,
@@ -29,7 +29,10 @@ export default function FeedScreen() {
         }}
       />
       <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <Text>Hello World</Text>
+        <Text>Search Screen</Text>
+        <Link href="/discover/recipe-detail">
+          <Text>Go to Recipe Detail</Text>
+        </Link>
       </ScrollView>
     </>
   );
