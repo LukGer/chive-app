@@ -5,7 +5,7 @@ import { admin, openAPI } from "better-auth/plugins";
 import { db } from "./database/config";
 
 export const auth = betterAuth({
-  plugins: [expo(), openAPI(), admin()],
+  plugins: [expo(), admin(), openAPI({ path: "/reference" })],
   database: drizzleAdapter(db, {
     provider: "pg",
   }),

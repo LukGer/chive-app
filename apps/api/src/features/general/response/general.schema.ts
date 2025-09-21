@@ -52,3 +52,34 @@ export const InternalServerErrorResponse = {
   },
   description: "Internal server error",
 };
+
+export const BadRequestResponse = {
+  content: {
+    "application/json": {
+      schema: ErrorResponseSchema,
+    },
+  },
+  description: "Bad request",
+};
+
+export const NoContentResponse = {
+  description: "No content",
+};
+
+export const CreatedResponse = <T>(schema: T) => ({
+  content: {
+    "application/json": {
+      schema,
+    },
+  },
+  description: "Created successfully",
+});
+
+export const ForbiddenResponse = {
+  content: {
+    "application/json": {
+      schema: ErrorResponseSchema,
+    },
+  },
+  description: "Forbidden - Insufficient permissions",
+};

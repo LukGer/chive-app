@@ -1,6 +1,7 @@
 import { handle } from "hono/aws-lambda";
 import { secureHeaders } from "hono/secure-headers";
 import { auth } from "./auth";
+import { recipeRoutes } from "./features/recipe-management";
 import configureOpenAPI from "./lib/configureOpenApi";
 import createApp from "./lib/createApp";
 
@@ -12,7 +13,7 @@ app.use(secureHeaders());
 
 app.on(["POST", "GET"], "/api/auth/**", (c) => auth.handler(c.req.raw));
 
-const routes = [] as const;
+const routes = [recipeRoutes] as const;
 type Routes = typeof routes;
 export type AppType = Routes[number];
 

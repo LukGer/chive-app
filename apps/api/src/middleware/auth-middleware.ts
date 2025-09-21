@@ -1,3 +1,4 @@
+import { AppBindings } from "@/lib/types";
 import { Context, Next } from "hono";
 import { auth } from "../auth";
 
@@ -33,6 +34,30 @@ export const authenticateApiKey = async (c: Context, next: Next) => {
   // Set a special user context for API key requests
   c.set("user", { id: "cron-job", type: "api-key" });
   c.set("session", null);
+
+  await next();
+};
+
+export const requireAuth = async (c: Context<AppBindings>, next: Next) => {
+  const user = c.get("user");
+
+  if (!user) {
+    return c.json({ error: "Authentication required" }, 401);
+  }
+
+  await next();
+};
+
+export const requireAdmin = async (c: Context<AppBindings>, next: Next) => {
+  const user = c.get("user");
+
+  if (!user) {
+    return c.json({ error: "Authentication required" }, 401);
+  }
+
+  if (user.role !== "admin") {
+    return c.json({ error: "Admin access required" }, 403);
+  }
 
   await next();
 };

@@ -117,9 +117,7 @@ export const recipeCollections = pgTable(
       .references(() => collections.id, { onDelete: "cascade" })
       .notNull(),
   },
-  (table) => ({
-    pk: primaryKey({ columns: [table.recipeId, table.collectionId] }),
-  })
+  (table) => [primaryKey({ columns: [table.recipeId, table.collectionId] })]
 );
 
 export const shoppingListItems = pgTable("shopping_list_items", {
