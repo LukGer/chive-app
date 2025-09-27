@@ -1,11 +1,10 @@
-import { useHeaderSearch } from "@/hooks/use-header-search";
 import { useThemeColor } from "@/hooks/useThemeColor";
+import { GlassView } from "expo-glass-effect";
 import { Link, Stack } from "expo-router";
-import { ScrollView, Text } from "react-native";
+import { SymbolView } from "expo-symbols";
+import { ScrollView, StyleSheet, Text } from "react-native";
 
 export default function SearchScreen() {
-  const search = useHeaderSearch();
-
   const backgroundColor = useThemeColor("background");
 
   return (
@@ -26,6 +25,11 @@ export default function SearchScreen() {
           contentStyle: {
             backgroundColor: backgroundColor,
           },
+          headerRight: () => (
+            <GlassView style={styles.headerButton} glassEffectStyle="clear">
+              <SymbolView name="person" />
+            </GlassView>
+          ),
         }}
       />
       <ScrollView contentInsetAdjustmentBehavior="automatic">
@@ -37,3 +41,10 @@ export default function SearchScreen() {
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  headerButton: {
+    padding: 8,
+    borderRadius: 100,
+  },
+});

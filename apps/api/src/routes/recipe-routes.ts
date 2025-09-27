@@ -4,6 +4,7 @@ import {
   requireAdmin,
   requireAuth,
 } from "@/middleware/auth-middleware";
+
 import {
   BadRequestResponse,
   CreatedResponse,
@@ -12,7 +13,7 @@ import {
   NotFoundResponse,
   SuccessResponse,
   UnauthorizedResponse,
-} from "../../general/response/general.schema";
+} from "@/features/general/response/general.schema";
 import {
   CreateRecipeSchema,
   CreateUserRecipeSchema,
@@ -23,8 +24,8 @@ import {
   RecipeStatsSchema,
   RecipeWithDetailsSchema,
   UpdateRecipeSchema,
-} from "../schemas";
-import { RecipeService } from "../services/recipe-service";
+} from "@/features/recipe-management";
+import { RecipeService } from "../features/recipe-management/services/recipe-service";
 
 const router = createRouter();
 

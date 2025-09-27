@@ -17,25 +17,21 @@ export default function TabLayout() {
 
   return (
     <NativeTabs>
-      <NativeTabs.Trigger name="home">
-        <Label>Home</Label>
-        <Icon sf="house" />
-      </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="discover" role="search">
+      <NativeTabs.Trigger name="discover">
         <Label>Discover</Label>
-        <Icon sf="magnifyingglass" />
+        <Icon sf="compass.drawing" />
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="my-recipes">
         <Label>My Recipes</Label>
         <Icon sf="book.fill" />
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="shopping-list">
-        <Label>Shopping</Label>
-        <Icon sf="cart.fill" />
+        <Label>Shopping List</Label>
+        <Icon sf="list.bullet" />
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="profile">
-        <Label>Profile</Label>
-        <Icon sf="person.fill" />
+      <NativeTabs.Trigger name="search" role="search">
+        <Label>Search</Label>
+        <Icon sf="magnifyingglass" />
       </NativeTabs.Trigger>
     </NativeTabs>
   );

@@ -17,8 +17,7 @@ export default function configureOpenAPI(app: AppOpenAPI) {
       pageTitle: "API Documentation",
       sources: [
         { url: "/api/reference", title: "API" },
-        // Better Auth schema generation endpoint
-        { url: "/api/auth/reference", title: "Auth" },
+        { url: "/api/auth/open-api/generate-schema", title: "Auth" },
       ],
     })
   );

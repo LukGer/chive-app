@@ -1,11 +1,11 @@
 import { expo } from "@better-auth/expo";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { admin } from "better-auth/plugins";
+import { admin, openAPI } from "better-auth/plugins";
 import { db } from "./database/config";
 
 export const auth = betterAuth({
-  plugins: [expo(), admin()],
+  plugins: [expo(), admin(), openAPI()],
   database: drizzleAdapter(db, {
     provider: "pg",
   }),
